@@ -11,10 +11,11 @@ Xnlo test = Xnlo();
 test.key["a"] = "hello";
 test["a"]["b"]["c"]["d"].key["ok"] = "ohhhhh!";
 test.str();  // 生成xnlo的内容这样
+// 这有二个"a" 已经重复键，不推荐用Xnlo
 std::cout << test.str() << std::endl;
 
 Pnlo ptest = Pnlo();
-ptest["a"] = "hello";
+ptest["1"] = "hello";  // 不许重复键！
 ptest["a"]["b"]["c"]["d"]["ok"] = "ohhhhh!";
 ptest.str();  // 生成pnlo的内容这样
 std::cout << ptest.str() << std::endl;
@@ -23,5 +24,5 @@ std::cout << ptest.str() << std::endl;
 ## 程序的test输出这样:
 ```
 "a" = "hello" ; "a" > "b" > "c" > "d" > "ok" = "ohhhhh!" ; ~~~~
-"a" = "hello" ; "a" > "b" > "c" > "d" > "ok" = "ohhhhh!" ; ~~~~
+"1" = "hello" ; "a" > "b" > "c" > "d" > "ok" = "ohhhhh!" ; ~ ~ ~ ~
 ```
