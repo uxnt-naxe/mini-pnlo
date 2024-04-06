@@ -4,7 +4,7 @@
 // mini-Pnlo
 class Pnlo {
 private:
-    std::map<std::string, Pnlo> data;
+    std::map<std::string, Pnlo> m_obj;
     std::string value;
 public:
     // 默认构造函数
@@ -12,7 +12,7 @@ public:
 
     // 访问操作符的重载，支持链式调用
     Pnlo & operator[] (const std::string& key) {
-        return data[key];
+        return m_obj[key];
     }
 
     // 重载赋值操作符，用于给 JSON 对象赋值
@@ -33,8 +33,8 @@ public:
         
         std::string result = "";
 
-        for (auto it = data.begin(); it != data.end();it++) {
-            if (it != data.begin()) {
+        for (auto it = m_obj.begin(); it != m_obj.end();it++) {
+            if (it != m_obj.begin()) {
                 // result += ", ";
             }
             if(!it->second.value.empty()){
