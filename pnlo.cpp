@@ -59,9 +59,9 @@ public:
             // clear(); ?
             m_type = pnlo_object;
             m_object = std::map<std::string, Pnlo>();
-            std::cout << "Obj初化" << std::endl;
+            // std::cout << "Obj初化" << std::endl;
         }
-        std::cout << "Obj已经有了" << std::endl;
+        // std::cout << "Obj已经有了" << std::endl;
         return m_object[key];
     }   // ! ok
 
@@ -96,7 +96,6 @@ public:
                             result += " = ";
                             result += it->second.str();
                             result += " ; ";
-                            // result += "\"" + it->first + "\" = \"" +it->second.m_value + "\" ; ";
                         } else {
                             result += "\"" + it->first + "\"";
                             result += " > ";
