@@ -64,8 +64,9 @@ public:
     }
 
     operator std::string() {
+        if (m_type != pnlo_string) { throw std::logic_error("function Pnlo::operator (string) requires string value"); }
         return m_value;
-    }    // ?
+    } // ok
 
     // 将 Pnlo 对象转换为字符串
     std::string str() const {
