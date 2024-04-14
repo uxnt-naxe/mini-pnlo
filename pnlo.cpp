@@ -54,11 +54,18 @@ public:
 
     // 访问操作符的重载，支持链式调用
     Pnlo & operator[] (const std::string& key) {
+        if (m_type != pnlo_object)
+        {
+            // clear(); ?
+            m_type = pnlo_object;
+            m_object = std::map<std::string, Pnlo>();
+        }
         return m_object[key];
     }   // ! ok
 
     // 重载赋值操作符，用于给 Pnlo 对象赋值
     Pnlo & operator = (const std::string& val) {
+        m_type = pnlo_string;
         m_value = val;
         return *this;
     }
