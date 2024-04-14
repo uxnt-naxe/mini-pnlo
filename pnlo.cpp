@@ -17,11 +17,40 @@ public:
         pnlo_array,     // array value
         pnlo_object     // object value
     };
-    
+
+// 默认构造函数
+// m_type :
+    ~Pnlo(){}
+    Pnlo():m_type(pnlo_null){}
+    Pnlo(Type type):m_type(type){
+        switch (m_type){
+            case pnlo_null:
+                break;
+            case pnlo_bool:
+                break;
+            case pnlo_int:
+                break;
+            case pnlo_double:
+                break;
+            case pnlo_string:
+                m_value = "";
+                break;
+            case pnlo_array:
+                break;
+            case pnlo_object:
+                m_object = std::map<std::string, Pnlo>();
+                break;
+            default:
+                break;
+        }
+    }
+    Type type() const { return m_type; }
 
 
-    // 默认构造函数
-    Pnlo() {}   // ! ok
+
+
+
+
 
     // 访问操作符的重载，支持链式调用
     Pnlo & operator[] (const std::string& key) {
@@ -36,7 +65,7 @@ public:
 
     operator std::string() {
         return m_value;
-    }
+    }    // ?
 
     // 将 Pnlo 对象转换为字符串
     std::string str() const {
