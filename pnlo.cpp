@@ -82,8 +82,22 @@ public:
         std::string result = "";
         switch (m_type)
         {
+            case pnlo_null:
+                result = "null" ;
+                break;
+            case pnlo_bool:
+                result += m_value;
+                break;
+            case pnlo_int:
+                result += m_value;
+                break;
+            case pnlo_double:
+                result += m_value;
+                break;
             case pnlo_string:
                 result += "\"" + m_value + "\"";
+                break;
+            case pnlo_array:
                 break;
             case pnlo_object:
                 {
