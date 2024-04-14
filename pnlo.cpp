@@ -59,7 +59,9 @@ public:
             // clear(); ?
             m_type = pnlo_object;
             m_object = std::map<std::string, Pnlo>();
+            std::cout << "Obj初化" << std::endl;
         }
+        std::cout << "Obj已经有了" << std::endl;
         return m_object[key];
     }   // ! ok
 
@@ -78,18 +80,37 @@ public:
     // 将 Pnlo 对象转换为字符串
     std::string str() const {
         std::string result = "";
-        for (auto it = m_object.begin(); it != m_object.end();it++) { 
-            if (it != m_object.begin()) {
-                // result += " , ";
-            }
-            if(!it->second.m_value.empty()){
-                result += "\"" + it->first + "\" = \"" +it->second.m_value + "\" ; ";
-            } else { 
-                result += "\"" + it->first + "\" > ";
-                result += it->second.str();
-                result += "~ ";
-            }
+        switch (m_type)
+        {
+            case pnlo_string:
+                result += "\"" + m_value + "\"";
+                break;
+            case pnlo_object:
+                {
+                    for (auto it = m_object.begin(); it != m_object.end(); it++) {
+                        if (it != m_object.begin()) {
+                            // result += " , ";
+                        }
+                        if (!it->second.m_value.empty()) {
+                            result += "\"" + it->first + "\"";
+                            result += " = ";
+                            result += it->second.str();
+                            result += " ; ";
+                            // result += "\"" + it->first + "\" = \"" +it->second.m_value + "\" ; ";
+                        } else {
+                            result += "\"" + it->first + "\"";
+                            result += " > ";
+                            result += it->second.str();
+                            result += " ~ ";
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
         }
+        
+        // std::cout << m_type << std::endl;
         return result;
     }
 
@@ -98,7 +119,12 @@ private:
     Type m_type;                               // 类型
     std::map<std::string, Pnlo> m_object;      // 链式调用 ok
     std::string m_value;                       // value 值
-    // std::list<Pnlo> m_array;                  // ???
+    
+    // ???
+    // std::list<Pnlo> m_array;                  
+    // bool m_bool;
+    // int m_int;
+    // double m_double;
 };
 
 
